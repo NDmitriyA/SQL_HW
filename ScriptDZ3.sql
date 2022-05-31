@@ -4,15 +4,14 @@ CREATE TABLE IF NOT EXISTS executor (
 	 pseudonym VARCHAR(100)	
 	 );
 CREATE TABLE IF NOT EXISTS album (
-	 id SERIAL PRIMARY KEY,
-	 executer_id INTEGER REFERENCES executor(id),	
+	 id SERIAL PRIMARY KEY,		
 	 title VARCHAR(100) NOT NULL,
 	 year_of_issue INTEGER NOT NULL
 	 );
 CREATE TABLE IF NOT EXISTS songs (	 
-	 id SERIAL PRIMARY KEY,
-	 album_id INTEGER REFERENCES album(id),
+	 id SERIAL PRIMARY KEY,	
 	 title VARCHAR(100) NOT NULL,
+	 album_id INTEGER REFERENCES album(id),
      duration NUMERIC	 
      );	 
 CREATE TABLE IF NOT EXISTS genre_of_music (
@@ -26,7 +25,16 @@ CREATE TABLE IF NOT EXISTS executor_genre (
 	 );
 CREATE TABLE IF NOT EXISTS compilation (
 	 id SERIAL PRIMARY KEY,
-	 name VARCHAR(100) NOT NULL,
-	 song_id INTEGER REFERENCES songs(id),
+	 name VARCHAR(100) NOT NULL,	
 	 year_of_issue INTEGER
+	 );
+CREATE TABLE IF NOT EXISTS alb_exec (
+	 album_id INTEGER REFERENCES album(id),
+	 executer_id INTEGER REFERENCES executor(id),
+	 CONSTRAINT alb_exe PRIMARY KEY (album_id, executer_id)
+	 );
+CREATE TABLE IF NOT EXISTS comp_song (
+	 comp_id INTEGER REFERENCES compilation(id),
+	 song_id INTEGER REFERENCES songs(id),
+	 CONSTRAINT com_son PRIMARY KEY (comp_id, song_id)
 	 );
