@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS genre_of_music (
 	 title VARCHAR(30) NOT NULL
 	 );
 CREATE TABLE IF NOT EXISTS executor_genre (
-	 executor_id INTEGER REFERENCES executor(id),
+	 executer_id INTEGER REFERENCES executor(id),
      genre_id INTEGER REFERENCES genre_of_music(id),
-	 CONSTRAINT ex_gen PRIMARY KEY (executor_id, genre_id)
+	 CONSTRAINT ex_gen PRIMARY KEY (executer_id, genre_id)
 	 );
 CREATE TABLE IF NOT EXISTS compilation (
 	 id SERIAL PRIMARY KEY,
